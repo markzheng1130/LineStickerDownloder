@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>
+        {% if sticker_title %}Downloading.. "{{ sticker_title }}"
+            <a href={{ web_store_url }}><h4>{{ web_store_url }}</h4></a>
+        {% else %}Insert sticker
+        {% endif %}
+    </h1>
+</div>
+
+<div class="container">
+    {% if sticker_url_list %}
+        <h3>Preview stickers ({{ sticker_url_list|length }}):</h3>
+        {% for sticker_url in sticker_url_list %}
+            <li><a href={{ sticker_url }}>{{ sticker_url }}</a></li>
+        {% endfor %}
+        <br>
+    {% endif %}
+</div>
+
+<div class="container">{{ wtf.quick_form(form) }}<p><p></div>
+
+{% endblock %}
